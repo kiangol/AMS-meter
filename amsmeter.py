@@ -5,15 +5,41 @@ import time
 
 GPIO.setmode(GPIO.BOARD)
 
-# Sett strømpriser
 nettleie = float(0.4795)
 wHpris = float(0.5158)
 prisPerkWh = float(nettleie + wHpris)
 prisPerWh = float(prisPerkWh / 1000)
-fastledd = int(129) #100 kr fastledd nettleie + 29 kr fastledd strøm
-print prisPerkWh # Skriv ut den totale strømprisen per kWh
+fastledd = int(129) #100 kr fastledd nettleie + 29 kr fastledd strom
+print (prisPerkWh) # Skriv ut den totale stromprisen per kWh
 
-# Hvilken GPIO pin som skal være koblet til LDR
+print("Folgende priser er registrert: ")
+print("Nettleie:",nettleie * 100,"ore")
+print("kWh-pris:",wHpris * 100,"ore")
+print("Fastledd:",fastledd,"kr")
+
+valg = raw_input("Onsker du aa gjore endringer? (ja/enter for nei): ")
+if(valg):
+    ny_nettleie = input("Nettleie er satt til 47,95 ore, skriv inn ny verdi (i ore) eller trykk enter for aa beholde: ")
+    if(ny_nettleie != ""):
+        nettleie = float(ny_nettleie/100)
+        print("Nettleie er satt til", ny_nettleie, "ore!")
+    else:
+        print("Nettleie er", nettleie * 100, "ore")
+    ny_kWh = input("Pris per kWh er satt til 51,58 ore, skriv inn ny verdi (i ore) eller trykk enter for aa beholde: ")
+    if(ny_kWh != ""):
+        wHpris = float(ny_kWh/100)
+        print("Ny kWh-pris er", ny_kWh, "ore!")
+    else:
+        print("Pris per kWh er ", wHpris * 100, " ore")
+    print("Nye priser er satt! ")
+    print("Nettleie: ", nettleie * 100, " ore")
+    print("kWh-pris: ", wHpris * 100, " ore")
+    print("Fastledd: ", fastledd, " kr")
+
+else:
+    print("Priser er ikke endret! ")
+print("Maaling startet ",time.strftime("%H:%M:%S"))
+# Hvilken GPIO pin som skal vaere koblet til LDR
 pin_to_circuit = 7
 
 def rc_time(pin_to_circuit):
@@ -32,13 +58,13 @@ def rc_time(pin_to_circuit):
 antall_malinger = 0
 sumpris = 0
 snittpris = 0
-period = 20000 # Måleintervall i ms, 20000 (20s) er standard.
+intervall = 20000 # Maaleintervall i ms, 20s (20000 ms) er standard. Hoyere intervall gir hoyere presisjon.
 try:
     while True:
         start_time = int(round(time.time() * 1000))
         tim = start_time
         count = 0
-        while start_time + period >= tim:
+        while start_time + interall >= tim:
             if rc_time(pin_to_circuit) < 5000:
                 count += 1
             tim = time.time() * 1000
@@ -62,11 +88,11 @@ try:
 	print 'Forelopig beregnet manedspris:',snittpris
 
 except KeyboardInterrupt:
-	for i in range(50):
-		print ' '
-	print 'Antall malinger:',antall_malinger
-	print ' '
-	print 'Beregnet forbruk per mnd:'
-	print snittpris,'kr'
-    print '(Beregnet ut ifra siste )',(antall_malinger/3),' minuttene)'
-	GPIO.cleanup()
+    for i in range(50):
+        print ' '
+        print 'Antall malinger:',antall_malinger
+        print ' '
+        print 'Beregnet forbruk per mnd:'
+        print snittpris,'kr'
+        print '(Beregnet ut ifra siste )',(antall_malinger/3),' minuttene)'
+        GPIO.cleanup()
