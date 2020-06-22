@@ -7,4 +7,4 @@ Requires:
 
 Define the pin to circuit on line 17 in amsmeter.py
 
-Run with python powermeter.py
+Run with python amsmeter.py
