@@ -58,7 +58,6 @@ def rc_time(pin_to_circuit):
         count += 1
     return count
 
-
 antall_malinger = 0
 sumpris = 0
 snittpris = 0
