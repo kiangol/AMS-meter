@@ -1,5 +1,7 @@
 # AMS-meter
-Python program to measure electricity usage on AMS
+Python program to measure electricity usage on AMS.
+
+Included ´sensorholder.stl´ fits the sensor and can be mounted on the electricity meter directly. 
 
 Requires: 
 1. Raspberry Pi running Raspbian
