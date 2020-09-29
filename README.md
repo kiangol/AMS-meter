@@ -6,6 +6,8 @@ Requires:
 2. LDR / photoresistor
 3. 2.2µ capacitor
 
-Define the pin to circuit on line 17 in amsmeter.py
+You can change the pin to circuit on line 17 in amsmeter.py
+Default wiring is as follows:
+
 
 Run with `python amsmeter.py`
