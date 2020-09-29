@@ -72,27 +72,27 @@ try:
         blink_i_timen = count*3*60
         pris_i_timen = blink_i_timen * prisPerWh
         manedspris = (pris_i_timen*24*30+fastledd)
-	for i in range(25):
-    	       print ' '
+	    for i in range(25):
+            print("")
         antall_malinger += 1
-	print 'MEASURE_COUNT:',antall_malinger
-	print 'PULSE_COUNT:',count
-        print time.strftime("%H:%M:%S")
-	print ' '
-	print 'Forbruk (~20s):',blink_i_timen,'Wh'
-        print 'Realtime Timepris:',pris_i_timen,'kr'
-        print 'Realtime Dagspris:',((fastledd/30)+pris_i_timen*24),'kr'
-	print 'Realtime Manedspris:',(manedspris),'kr'
-	sumpris += manedspris
-	snittpris = sumpris/antall_malinger
-	print 'Forelopig beregnet manedspris:',snittpris
+        print("MEASURE_COUNT:", antall_malinger)
+        print("PULSE_COUNT:",count)
+        print(time.strftime("%H:%M:%S"))
+        print("Hei")
+        print("Forbruk (~20s):",blink_i_timen,'Wh')
+        print("Realtime Timepris:",pris_i_timen,'kr')
+        print("Realtime Dagspris:",((fastledd/30)+pris_i_timen*24),'kr')
+        print("Realtime Manedspris:",(manedspris),'kr')
+        sumpris += manedspris
+        snittpris = sumpris/antall_malinger
+        print ("Forelopig beregnet manedspris:',snittpris)
 
 except KeyboardInterrupt:
     for i in range(50):
+        print("")
+        print ("Antall malinger:",antall_malinger)
         print ' '
-        print 'Antall malinger:',antall_malinger
-        print ' '
-        print 'Beregnet forbruk per mnd:'
+        print ("Beregnet forbruk per mnd:')
         print snittpris,'kr'
         print '(Beregnet ut ifra siste )',(antall_malinger/3),' minuttene)'
         GPIO.cleanup()
