@@ -11,7 +11,7 @@ Requires:
 You can change the pin to circuit on line 17 in amsmeter.py
 Default wiring is as follows:
 
-![Wiring](https://github.com/kiangol/AMS-meter/blob/master/wiring.png?raw=true)
-
+![Wiring](https://github.com/kiangol/AMS-meter/blob/master/images/wiring.png?raw=true)
+![Mounted](https://github.com/kiangol/AMS-meter/blob/master/images/holder.jpeg?raw=true)
 
 Run with `python amsmeter.py`
